@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ostra.Paczka.WebApi", "Ostra.Paczka.WebApi\Ostra.Paczka.WebApi.csproj", "{03BFC414-8358-40D7-A5BC-CA718DEB7598}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ostra.Paczka.Application", "Ostra.Paczka.Application\Ostra.Paczka.Application.csproj", "{7DD41D21-8A09-4D58-94EE-ADA2FA9B7D1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ostra.Paczka.Domain", "Ostra.Paczka.Domain\Ostra.Paczka.Domain.csproj", "{34955B3E-5B91-49CC-B211-712F4704FEAE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03BFC414-8358-40D7-A5BC-CA718DEB7598}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03BFC414-8358-40D7-A5BC-CA718DEB7598}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03BFC414-8358-40D7-A5BC-CA718DEB7598}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03BFC414-8358-40D7-A5BC-CA718DEB7598}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD41D21-8A09-4D58-94EE-ADA2FA9B7D1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD41D21-8A09-4D58-94EE-ADA2FA9B7D1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD41D21-8A09-4D58-94EE-ADA2FA9B7D1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD41D21-8A09-4D58-94EE-ADA2FA9B7D1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34955B3E-5B91-49CC-B211-712F4704FEAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34955B3E-5B91-49CC-B211-712F4704FEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34955B3E-5B91-49CC-B211-712F4704FEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34955B3E-5B91-49CC-B211-712F4704FEAE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

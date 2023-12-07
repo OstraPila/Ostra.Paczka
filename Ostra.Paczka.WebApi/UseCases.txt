@@ -1,0 +1,18 @@
+Przypadki użycia (Ostra paczka):
+- wyświetl moje paczki
+- nadaj paczkę
+- odbierz paczkę
+- powiadom o statusie paczki
+    - powiadom odbiorcę o nadaniu paczki
+    - potwierdź nadanie paczki nadawcy
+- przekierowanie (inny adres dostawy)
+- reklamacja
+----
+- rozmiar przesyłki/wielkogabarytowa
+- alternatywny proces przesyłki - taxi/uber/glovo
+- one day delivery
+- przesyłanie artykułów niebezpiecznych
+- przesyłki od innych firm kurierskich
+
+NFR:
+- modularny monolit

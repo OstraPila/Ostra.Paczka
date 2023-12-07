@@ -1,0 +1,9 @@
+@Ostra.Paczka_HostAddress = http://localhost:5236
+
+GET {{Ostra.Paczka_HostAddress}}/📦📦📦👉
+Accept: application/json
+
+###
+
+GET {{Ostra.Paczka_HostAddress}}/📦📦📦👈
+Accept: application/json
