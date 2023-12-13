@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Mvc;
+using Ostra.Paczka;
 using Ostra.Paczka.Application;
-using Ostra.Paczka.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,12 +20,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/📦📦📦👉", (WebApiService webApiService) => webApiService.GetSentParcels());
-app.MapGet("/📦📦📦👈", (WebApiService webApiService) => webApiService.GetReceivingParcels());
-app.MapPost("/📦", (WebApiService webApiService, [FromBody] NewShipmentDetails newShipmentDetails) =>
-{
-    webApiService.AddNewParcel(newShipmentDetails);
-    return Results.Created();
-});
+app.RegisterParcelEndpoints()
+   .RegisterSupportEndpoints();
 
 app.Run();

@@ -6,7 +6,9 @@ Przypadki użycia (Ostra paczka):
     - powiadom odbiorcę o nadaniu paczki
     - potwierdź nadanie paczki nadawcy
 - przekierowanie (inny adres dostawy)
-- reklamacja
+
+- reklamacja/zwrot
+- remarks/uwagi do przesyłki
 ----
 - rozmiar przesyłki/wielkogabarytowa
 - alternatywny proces przesyłki - taxi/uber/glovo

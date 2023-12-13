@@ -7,7 +7,9 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection collection)
     {
         collection.AddSingleton<ParcelsStore>();
-        collection.AddScoped<WebApiService>();
+        collection.AddSingleton<SupportQueue>();
+        collection.AddScoped<ParcelService>();
+        collection.AddScoped<SupportService>();
         return collection;
     }
 }

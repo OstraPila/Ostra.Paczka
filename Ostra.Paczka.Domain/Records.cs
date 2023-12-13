@@ -1,6 +1,6 @@
 namespace Ostra.Paczka.Domain;
 
-public record Shipment(ShipmentSize Size, uint Weight);
+public record ShipmentRequest(ShipmentSize Size, uint Weight);
 
 public enum ShipmentSize
 {
@@ -17,7 +17,8 @@ public record Recipient(string Name, string Address);
 public record Delivery(
     Sender Sender, 
     Recipient Recipient, 
-    Shipment Shipment);
+    ShipmentRequest ShipmentRequest,
+    TrackingId TrackingId);
 
 public record SentParcelViewModel(
     SenderInfo Sender,
@@ -37,10 +38,18 @@ public record RecipientInfo;
 
 public record DeliveryStatus;
 
-public record ShipmentBasicInfo(string TrackingNumber);
+public record ShipmentBasicInfo(TrackingId TrackingId);
 
 public record RecipientBasicInfo(string Name);
 
 public record SenderBasicInfo(string Name);
 
-public record NewShipmentDetails(Sender Sender, Recipient Recipient, Shipment Shipment);
+public record NewShipmentDetails(Sender Sender, Recipient Recipient, ShipmentRequest ShipmentRequest);
+
+public record ParcelReturnRequest(Sender Sender, Recipient Recipient, ShipmentRequest ShipmentRequest, Reason? Reason);
+
+public record Reason(string? Text);
+
+public record ParcelRejectRequest(Reason Reason);
+
+public record TrackingId(Guid Guid);
