@@ -1,5 +1,6 @@
 namespace Ostra.Paczka.Application;
 
+public record SupportTicket;
 public class SupportQueue
 {
     public void SaveReturnRequest(SupportTicket supportTicket)

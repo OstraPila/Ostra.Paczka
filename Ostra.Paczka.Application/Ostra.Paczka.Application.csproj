@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Ostra.Paczka.Domain\Ostra.Paczka.Domain.csproj" />
+      <ProjectReference Include="..\Ostra.Paczka.SharedKernel\Ostra.Paczka.SharedKernel.csproj" />
     </ItemGroup>
 
     <ItemGroup>

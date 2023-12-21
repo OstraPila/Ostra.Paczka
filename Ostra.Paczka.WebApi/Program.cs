@@ -1,8 +1,10 @@
 using Ostra.Paczka;
 using Ostra.Paczka.Application;
+using Wolverine;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Host.UseWolverine(options =>
+    options.Discovery.IncludeAssembly(typeof(MarkerHandler).Assembly));
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

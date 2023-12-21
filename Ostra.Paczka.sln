@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ostra.Paczka.Application", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ostra.Paczka.Domain", "Ostra.Paczka.Domain\Ostra.Paczka.Domain.csproj", "{34955B3E-5B91-49CC-B211-712F4704FEAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ostra.Paczka.SharedKernel", "Ostra.Paczka.SharedKernel\Ostra.Paczka.SharedKernel.csproj", "{0AC42657-0D38-41AD-9B0D-D56D19EA562C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{34955B3E-5B91-49CC-B211-712F4704FEAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34955B3E-5B91-49CC-B211-712F4704FEAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34955B3E-5B91-49CC-B211-712F4704FEAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AC42657-0D38-41AD-9B0D-D56D19EA562C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AC42657-0D38-41AD-9B0D-D56D19EA562C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AC42657-0D38-41AD-9B0D-D56D19EA562C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AC42657-0D38-41AD-9B0D-D56D19EA562C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -8,8 +8,6 @@ public static class ServiceCollectionExtensions
     {
         collection.AddSingleton<ParcelsStore>();
         collection.AddSingleton<SupportQueue>();
-        collection.AddScoped<ParcelService>();
-        collection.AddScoped<SupportService>();
         return collection;
     }
 }

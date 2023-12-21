@@ -1,10 +1,12 @@
-using System.Buffers;
-using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Routing;
-using Ostra.Paczka.Application;
+using Ostra.Paczka.Application.NewShipment;
+using Ostra.Paczka.Application.ParcelById;
+using Ostra.Paczka.Application.ParcelReturn;
+using Ostra.Paczka.Application.ReceivedParcels;
+using Ostra.Paczka.Application.SentParcels;
 using Ostra.Paczka.Domain;
-
+using Ostra.Paczka.SharedKernel;
+using Wolverine;
 namespace Ostra.Paczka;
 
 public static class Endpoints
@@ -13,23 +15,10 @@ public static class Endpoints
     {
         ArgumentNullException.ThrowIfNull(app);
 
-        app.MapGet("/📦📦📦👉", (ParcelService parcelService) => parcelService.GetSentParcels());
-        app.MapGet("/📦📦📦👈", (ParcelService parcelService) => parcelService.GetReceivingParcels());
-        app.MapPost("/📦", (ParcelService parcelService, [FromBody] NewShipmentDetails newShipmentDetails) =>
-        {
-            var trackingNumber = parcelService.AddNewParcel(newShipmentDetails);
-            Span<char> link = stackalloc char[16];
-            return UrlEncoder.Create().Encode("📦", link, out _, out var charsWritten) == OperationStatus.Done
-                ? Results.Created($"/{link[..charsWritten].ToString()}/{trackingNumber.Guid}", trackingNumber)
-                : Results.Problem();
-        });
-        app.MapGet("/📦/{id}",
-            (ParcelService parcelService, [FromRoute] Guid id)
-                =>
-            {
-                var parcel = parcelService.GetParcelById(new TrackingId(id));
-                return parcel.IsSuccessful ? Results.Ok(parcel.Value) : Results.NotFound();
-            });
+        app.MapGet("/📦📦📦👉", (IMessageBus bus) => bus.InvokeAsync<Result<SentParcelResult>>(new SentParcelsQuery()));
+        app.MapGet("/📦📦📦👈", (IMessageBus bus) => bus.InvokeAsync<Result<ReceivedParcelResult>>(new ReceivingParcelsQuery()));
+        app.MapPost("/📦", ([FromBody] NewShipmentCommand newShipmentDetails, IMessageBus bus) => bus.InvokeAsync<Result<NewShipmentResult>>(newShipmentDetails));
+        app.MapGet("/📦/{id}", ([FromRoute] Guid id, IMessageBus bus) => bus.InvokeAsync<Result<ParcelDetailsResult>>(new ParcelByIdQuery(id)));
         return app;
     }
 
@@ -37,16 +26,8 @@ public static class Endpoints
     {
         ArgumentNullException.ThrowIfNull(app);
 
-        app.MapPost("/😡📦", (SupportService webApiService, [FromBody] ParcelReturnRequest parcelReturnRequest) =>
-        {
-            webApiService.ReturnParcel(parcelReturnRequest);
-            return Results.Accepted();
-        });
-        app.MapPost("/💥📦", (SupportService webApiService, [FromBody] ParcelRejectRequest parcelRejectRequest) =>
-        {
-            webApiService.RejectParcel(parcelRejectRequest);
-            return Results.Accepted();
-        });
+        app.MapPost("/😡📦", ([FromBody] ParcelReturnCommand parcelReturnRequest, IMessageBus bus) => bus.InvokeAsync(parcelReturnRequest));
+        app.MapPost("/💥📦", ([FromBody] ParcelRejectCommand parcelRejectRequest, IMessageBus bus) => bus.InvokeAsync(parcelRejectRequest));
 
         return app;
     }
