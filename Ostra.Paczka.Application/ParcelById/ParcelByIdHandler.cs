@@ -7,7 +7,7 @@ public record ParcelByIdQuery(Guid Id);
 
 public record ParcelDetailsResult(Sender Sender, Recipient Recipient, ShipmentBasicInfo ShipmentBasicInfo);
 
-public class ParcelByIdHandler(ParcelsStore parcelsStore)
+public class ParcelByIdHandler(IParcelsStore parcelsStore)
 {
     public Result<ParcelDetailsResult> Handle(ParcelByIdQuery query)
     {
@@ -17,6 +17,7 @@ public class ParcelByIdHandler(ParcelsStore parcelsStore)
         {
             return "Delivery not found";
         }
+
         return new ParcelDetailsResult(
             delivery.Sender,
             delivery.Recipient,

@@ -4,7 +4,7 @@ namespace Ostra.Paczka.SharedKernel;
 
 public class Result<T>
 {
-    private T? _result;
+    private readonly T? _result;
     private readonly string? _error;
 
     private Result(T result)
@@ -21,7 +21,8 @@ public class Result<T>
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public T Value => _result!;
-
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+    public string Error => _error!;
     public static implicit operator Result<T>(T result)
     {
         return new Result<T>(result);

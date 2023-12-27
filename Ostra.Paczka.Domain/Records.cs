@@ -34,6 +34,6 @@ public record SenderBasicInfo(string Name);
 
 public record Reason(string? Text);
 
-public record ParcelRejectCommand(Reason Reason);
+public record SupportTicket;
 
 public record TrackingId(Guid Guid);

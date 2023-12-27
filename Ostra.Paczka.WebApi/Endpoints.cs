@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Ostra.Paczka.Application.NewShipment;
 using Ostra.Paczka.Application.ParcelById;
+using Ostra.Paczka.Application.ParcelReject;
 using Ostra.Paczka.Application.ParcelReturn;
 using Ostra.Paczka.Application.ReceivedParcels;
 using Ostra.Paczka.Application.SentParcels;
-using Ostra.Paczka.Domain;
 using Ostra.Paczka.SharedKernel;
 using Wolverine;
 namespace Ostra.Paczka;

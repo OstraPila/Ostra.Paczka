@@ -1,7 +1,9 @@
-namespace Ostra.Paczka.Application;
+using Ostra.Paczka.Application;
+using Ostra.Paczka.Domain;
 
-public record SupportTicket;
-public class SupportQueue
+namespace Ostra.Paczka.Infrastructure;
+
+public class SupportQueue : ISupportQueue
 {
     public void SaveReturnRequest(SupportTicket supportTicket)
     {

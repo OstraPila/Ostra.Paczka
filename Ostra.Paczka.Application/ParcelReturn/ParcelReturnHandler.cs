@@ -4,7 +4,7 @@ namespace Ostra.Paczka.Application.ParcelReturn;
 
 public record ParcelReturnCommand(Sender Sender, Recipient Recipient, ShipmentRequest ShipmentRequest, Reason? Reason);
 
-public class ParcelReturnHandler(SupportQueue supportQueue)
+public class ParcelReturnHandler(ISupportQueue supportQueue)
 {
     public void Handle(ParcelReturnCommand _)
     {
