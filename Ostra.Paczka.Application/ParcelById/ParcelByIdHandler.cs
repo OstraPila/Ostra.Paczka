@@ -11,16 +11,15 @@ public class ParcelByIdHandler(IParcelsStore parcelsStore)
 {
     public Result<ParcelDetailsResult> Handle(ParcelByIdQuery query)
     {
-        var delivery = parcelsStore.Deliveries.Find(
-            x => x.TrackingId == new TrackingId(query.Id));
-        if (delivery is null)
-        {
-            return "Delivery not found";
-        }
+        var delivery = parcelsStore.GetByTrackingId(new TrackingId(query.Id));
 
-        return new ParcelDetailsResult(
-            delivery.Sender,
-            delivery.Recipient,
-            new ShipmentBasicInfo(delivery.TrackingId));
+        return delivery.IsSuccessful switch
+        {
+            true => new ParcelDetailsResult(
+                     delivery.Value.Sender,
+                     delivery.Value.Recipient,
+                     new ShipmentBasicInfo(delivery.Value.TrackingId)),
+            false => "Delivery not found",
+        };
     }
 }

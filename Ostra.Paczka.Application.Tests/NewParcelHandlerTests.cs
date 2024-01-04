@@ -24,6 +24,6 @@ public class NewParcelHandlerTests
 
         // Assert
         Assert.Equal(new Guid("9DF2B69A-B922-4411-B892-7D63460C1227"), result.Value.TrackingId.Guid);
-        Assert.Equal(1, parcelsStore.Deliveries.Count);
+        Assert.Equal(1, parcelsStore.Get().Count);
     }
 }

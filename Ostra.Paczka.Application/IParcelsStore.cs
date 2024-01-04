@@ -1,8 +1,11 @@
 using Ostra.Paczka.Domain;
+using Ostra.Paczka.SharedKernel;
 
 namespace Ostra.Paczka.Application;
 
 public interface IParcelsStore
 {
-    List<Delivery> Deliveries { get; }
+    void Add(Delivery delivery);
+    IList<Delivery> Get();
+    Result<Delivery> GetByTrackingId(TrackingId trackingId);
 }

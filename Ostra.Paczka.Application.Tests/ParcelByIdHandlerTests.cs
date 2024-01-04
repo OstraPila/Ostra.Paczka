@@ -42,7 +42,7 @@ public class ParcelByIdHandlerTests
     private static ParcelsStore Prepare(Guid parcelId1)
     {
         var parcelsStore = new ParcelsStore();
-        parcelsStore.Deliveries.Add(new Delivery(new Sender("SenderName", "SenderAddress"),
+        parcelsStore.Add(new Delivery(new Sender("SenderName", "SenderAddress"),
             new Recipient("RecipientName", "RecipientAddress"),
             new ShipmentRequest(ShipmentSize.S, 10),
             new TrackingId(parcelId1)));

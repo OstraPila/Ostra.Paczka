@@ -15,7 +15,7 @@ public class ReceivingParcelsHandler(IParcelsStore parcelsStore)
 {
     public Result<ReceivedParcelResult[]> Handle(ReceivingParcelsQuery _)
     {
-        return parcelsStore.Deliveries.Select(x =>
+        return parcelsStore.Get().Select(x =>
             new ReceivedParcelResult(
                 new SenderBasicInfo(x.Sender.Name),
                 new RecipientInfo(),

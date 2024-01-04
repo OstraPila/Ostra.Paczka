@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 
 namespace Ostra.Paczka.SharedKernel;
 
@@ -16,10 +17,13 @@ public class Result<T>
 
     [MemberNotNullWhen(false, nameof(Error))]
     [MemberNotNullWhen(true, nameof(Value))]
+    [JsonIgnore]
     public bool IsSuccessful => Error is null;
 
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public T? Value { get; }
 
+    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Error { get; }
 
     public static implicit operator Result<T>(T result)

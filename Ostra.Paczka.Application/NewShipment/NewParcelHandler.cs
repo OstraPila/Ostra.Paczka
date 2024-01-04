@@ -15,7 +15,7 @@ public class NewParcelHandler(
     {
         var (sender, recipient, shipment) = newShipmentCommand;
         var trackingNumber = trackingNumberGenerator.NewTrackingId();
-        parcelsStore.Deliveries.Add(new Delivery(sender, recipient, shipment, trackingNumber));
+        parcelsStore.Add(new Delivery(sender, recipient, shipment, trackingNumber));
 
         return new NewShipmentResult(trackingNumber);
     }
