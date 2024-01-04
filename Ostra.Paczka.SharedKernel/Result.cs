@@ -1,28 +1,27 @@
-using System.Text.Json.Serialization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Ostra.Paczka.SharedKernel;
 
 public class Result<T>
 {
-    private readonly T? _result;
-    private readonly string? _error;
-
     private Result(T result)
     {
-        _result = result;
+        Value = result;
     }
 
     private Result(string error)
     {
-        _error = error;
+        Error = error;
     }
 
-    public bool IsSuccessful => _error is null;
+    [MemberNotNullWhen(false, nameof(Error))]
+    [MemberNotNullWhen(true, nameof(Value))]
+    public bool IsSuccessful => Error is null;
 
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public T Value => _result!;
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-    public string Error => _error!;
+    public T? Value { get; }
+
+    public string? Error { get; }
+
     public static implicit operator Result<T>(T result)
     {
         return new Result<T>(result);
