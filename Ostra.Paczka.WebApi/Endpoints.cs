@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Ostra.Paczka.Application.NewShipment;
+using Ostra.Paczka.Application.NewShipmentViaDeliveryPerson;
 using Ostra.Paczka.Application.ParcelById;
 using Ostra.Paczka.Application.ParcelReject;
 using Ostra.Paczka.Application.ParcelReturn;
@@ -19,6 +20,9 @@ public static class Endpoints
         app.MapGet("/📦📦📦👈", (IMessageBus bus) => bus.InvokeAsync<Result<ReceivedParcelResult[]>>(new ReceivingParcelsQuery()));
         app.MapPost("/📦", ([FromBody] NewShipmentCommand newShipmentDetails, IMessageBus bus) => bus.InvokeAsync<Result<NewShipmentResult>>(newShipmentDetails));
         app.MapGet("/📦/{id}", ([FromRoute] Guid id, IMessageBus bus) => bus.InvokeAsync<Result<ParcelDetailsResult>>(new ParcelByIdQuery(id)));
+        app.MapPost("/📦🧙‍♂️👉",
+            ([FromBody] NewShipmentViaDeliveryPerson newShipmentViaDeliveryPerson, IMessageBus bus) =>
+                bus.InvokeAsync<Result<NewShipmentTicket>>(newShipmentViaDeliveryPerson));
         return app;
     }
 

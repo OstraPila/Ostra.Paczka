@@ -37,3 +37,5 @@ public record Reason(string? Text);
 public record SupportTicket;
 
 public record TrackingId(Guid Guid);
+
+public record DeliveryRequest(Guid Id, string Address);

@@ -34,11 +34,6 @@ public class ParcelsStore : IParcelsStore
         // saved!
     }
 
-    public Task SaveChangesAsync()
-    {
-        throw new NotImplementedException();
-    }
-
     public IList<Delivery> Get()
     {
         return Deliveries.Select(d =>
