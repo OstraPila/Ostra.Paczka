@@ -10,7 +10,7 @@ public record SentParcelResult(
     ShipmentBasicInfo ShipmentInfo,
     DeliveryStatus DeliveryStatus);
 
-public class SentParcelsHandler(IParcelsStore parcelsStore)
+public class SentParcelsHandler(IParcelsStore<Delivery> parcelsStore)
 {
     public Result<SentParcelResult[]> Handle(SentParcelsQuery _)
     {

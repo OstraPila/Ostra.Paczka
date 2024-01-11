@@ -8,7 +8,7 @@ public record NewShipmentCommand(Sender Sender, Recipient Recipient, ShipmentReq
 public record NewShipmentResult(TrackingId TrackingId);
 
 public class NewParcelHandler(
-    IParcelsStore parcelsStore,
+    IParcelsStore<Delivery> parcelsStore,
     ITrackingNumberGenerator trackingNumberGenerator)
 {
     public Result<NewShipmentResult> Handle(NewShipmentCommand newShipmentCommand)
@@ -19,14 +19,4 @@ public class NewParcelHandler(
 
         return new NewShipmentResult(trackingNumber);
     }
-}
-
-public interface ITrackingNumberGenerator
-{
-    TrackingId NewTrackingId();
-}
-
-public class GuidTrackingNumberGenerator : ITrackingNumberGenerator
-{
-    public TrackingId NewTrackingId() => new TrackingId(Guid.NewGuid());
 }

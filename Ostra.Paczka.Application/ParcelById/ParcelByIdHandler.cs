@@ -7,11 +7,12 @@ public record ParcelByIdQuery(Guid Id);
 
 public record ParcelDetailsResult(Sender Sender, Recipient Recipient, ShipmentBasicInfo ShipmentBasicInfo);
 
-public class ParcelByIdHandler(IParcelsStore parcelsStore)
+public class ParcelByIdHandler(IParcelsStore<Delivery> parcelsStore)
 {
     public Result<ParcelDetailsResult> Handle(ParcelByIdQuery query)
     {
-        var delivery = parcelsStore.GetByTrackingId(new TrackingId(query.Id));
+        var delivery = parcelsStore.GetBy(d =>
+            d.TrackingId == new TrackingId(query.Id));
 
         return delivery switch
         {

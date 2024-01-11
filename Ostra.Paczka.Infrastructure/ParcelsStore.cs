@@ -1,10 +1,9 @@
-using Ostra.Paczka.Application;
 using Ostra.Paczka.Domain;
 using Ostra.Paczka.SharedKernel;
 
 namespace Ostra.Paczka.Infrastructure;
 
-public class ParcelsStore : IParcelsStore
+public class ParcelsStore : IParcelsStore<Delivery>
 {
     private List<DeliveryEntity> Deliveries = [];
     private List<SenderEntity> Senders = [];
@@ -48,9 +47,9 @@ public class ParcelsStore : IParcelsStore
         }).ToList();
     }
 
-    public Result<Delivery> GetByTrackingId(TrackingId trackingId)
+    public Result<Delivery> GetBy(Func<Delivery, bool> getBy)
     {
-        var d = Deliveries.Where(d => d.TrackingId == trackingId.Guid).Select(d =>
+        var d = Deliveries.Select(d =>
         {
             var sender = Senders.Single(s => s.Id == d.SenderId);
             var recipient = Recipients.Single(r => r.Id == d.RecipientId);
@@ -59,7 +58,7 @@ public class ParcelsStore : IParcelsStore
                 new Recipient(recipient.Name, recipient.Address),
                 new ShipmentRequest(d.Size, d.Weight),
                 new TrackingId(d.TrackingId));
-        }).SingleOrDefault();
+        }).SingleOrDefault(getBy);
         return d is null ? "Not found" : d;
     }
 }

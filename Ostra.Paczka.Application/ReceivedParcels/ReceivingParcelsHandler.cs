@@ -11,7 +11,7 @@ public record ReceivedParcelResult(
     ShipmentBasicInfo ShipmentInfo,
     DeliveryStatus DeliveryStatus);
 
-public class ReceivingParcelsHandler(IParcelsStore parcelsStore)
+public class ReceivingParcelsHandler(IParcelsStore<Delivery> parcelsStore)
 {
     public Result<ReceivedParcelResult[]> Handle(ReceivingParcelsQuery _)
     {

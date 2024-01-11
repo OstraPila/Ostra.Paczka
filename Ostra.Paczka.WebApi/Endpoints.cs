@@ -16,9 +16,9 @@ public static class Endpoints
     {
         ArgumentNullException.ThrowIfNull(app);
 
+        app.RegisterNewShipmentEndpoint();
         app.MapGet("/📦📦📦👉", (IMessageBus bus) => bus.InvokeAsync<Result<SentParcelResult[]>>(new SentParcelsQuery()));
         app.MapGet("/📦📦📦👈", (IMessageBus bus) => bus.InvokeAsync<Result<ReceivedParcelResult[]>>(new ReceivingParcelsQuery()));
-        app.MapPost("/📦", ([FromBody] NewShipmentCommand newShipmentDetails, IMessageBus bus) => bus.InvokeAsync<Result<NewShipmentResult>>(newShipmentDetails));
         app.MapGet("/📦/{id}", ([FromRoute] Guid id, IMessageBus bus) => bus.InvokeAsync<Result<ParcelDetailsResult>>(new ParcelByIdQuery(id)));
         app.MapPost("/📦🧙‍♂️👉",
             ([FromBody] NewShipmentViaDeliveryPerson newShipmentViaDeliveryPerson, IMessageBus bus) =>

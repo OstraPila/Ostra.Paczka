@@ -15,6 +15,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Ostra.Paczka.Application.NewShipment\Ostra.Paczka.Application.NewShipment.csproj" />
       <ProjectReference Include="..\Ostra.Paczka.Application\Ostra.Paczka.Application.csproj" />
       <ProjectReference Include="..\Ostra.Paczka.Infrastructure\Ostra.Paczka.Infrastructure.csproj" />
     </ItemGroup>
