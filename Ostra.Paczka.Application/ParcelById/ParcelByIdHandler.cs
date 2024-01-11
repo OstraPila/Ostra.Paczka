@@ -13,13 +13,13 @@ public class ParcelByIdHandler(IParcelsStore parcelsStore)
     {
         var delivery = parcelsStore.GetByTrackingId(new TrackingId(query.Id));
 
-        return delivery.IsSuccessful switch
+        return delivery switch
         {
-            true => new ParcelDetailsResult(
-                     delivery.Value.Sender,
-                     delivery.Value.Recipient,
-                     new ShipmentBasicInfo(delivery.Value.TrackingId)),
-            false => "Delivery not found",
+            { Value: { } value } =>
+                new ParcelDetailsResult(value.Sender,
+                    value.Recipient,
+                    new ShipmentBasicInfo(value.TrackingId)),
+            _ => "Delivery not found",
         };
     }
 }
