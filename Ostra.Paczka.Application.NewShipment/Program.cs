@@ -11,7 +11,7 @@ public static class Program
     public static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-        builder.Host.UseWolverine(options => options.RegisterHandler());
+        builder.Host.UseWolverine(options => options.RegisterNewShipmentHandler());
         // Add services to the container.
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -42,6 +42,6 @@ public static class Program
         bus.InvokeAsync<Result<NewShipmentResult>>(newShipmentDetails));
     }
 
-    public static void RegisterHandler(this WolverineOptions options)
+    public static void RegisterNewShipmentHandler(this WolverineOptions options)
         => options.Discovery.IncludeAssembly(typeof(NewParcelHandler).Assembly);
 }

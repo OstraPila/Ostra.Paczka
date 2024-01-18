@@ -34,7 +34,9 @@ internal static class RegisterExtensions
 {
     private static void RegisterHandlerAll(this WolverineOptions options)
     {
-        options.RegisterHandler();
+        options.RegisterNewShipmentHandler();
+        // New handlers registered as follows:
+        // options.RegisterNewShipmentViaDeliveryPersonHandler();
         options.Discovery.IncludeAssembly(typeof(MarkerHandler).Assembly);
     }
 
